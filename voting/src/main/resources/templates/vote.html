@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voting Page</title>
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet"
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+    crossorigin="anonymous">
+<link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    rel="stylesheet">
+<style>
+* {
+  box-sizing: border-box;
+  font-size: 20px;
+}
+
+input[type=text], select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+label {
+  padding: 12px 12px 12px 0;
+  display: inline-block;
+}
+
+input[type=submit] {
+  background-color: #04AA6D;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  float: right;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+.container {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+.col-25 {
+  float: left;
+  width: 25%;
+  margin-top: 6px;
+}
+
+.col-75 {
+  float: left;
+  width: 75%;
+  margin-top: 6px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .col-25, .col-75, input[type=submit] {
+    width: 100%;
+    margin-top: 0;
+  }
+}
+.row{
+    text-align: center;
+}
+#message{
+  text-align: center;
+  font-size: 35px;
+  display: block;
+
+}.bt1{
+  float: left;
+  font-size: 20px;
+  width: 200px;
+  height: 50px;
+}
+.bt{
+  font-size: 20px;
+  width: 200px;
+}
+</style>
+</head>
+<body>
+
+
+<div class="container">
+  <form id="voteForm">
+    <div class="row">
+      <div class="col-25">
+        <label for="name"> Name</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="name" name="name" placeholder="Your name.." required>
+      </div>
+    </div>
+   
+
+    <div class="row">
+        <div class="col-25">
+          <label for="contact">Contact</label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="contact" name="contact" placeholder="Your contact.." readonly>
+        </div>
+      </div>
+    
+
+    <div class="row">
+      <div class="col-25">
+        <label for="party">Candidate name </label>
+      </div>
+      <div class="col-75">
+        <select id="candidates" name="selectedCandidate" required>
+          <!-- <option value="AGP">Candidate A</option>
+          <option value="KONKRACE">Candidate B</option>
+          <option value="JIVSENA">Candidate C</option>
+          <option value="JIVSENA">Candidate D</option> -->
+
+        </select>
+      </div>
+    </div>
+  <br>
+ 
+    <div class="row">
+      <input type="submit" value="Submit" class="bt">
+    </div>
+<br>
+    <div class="row">
+      <a type="submit" role="button" th:href="@{/register}"  class=" btn btn-primary bt1" >Home</a>
+    </div><br>
+  </form>
+  <div id="message"></div>
+
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const candidatesSelect = document.getElementById("candidates");
+    const voteForm = document.getElementById("voteForm");
+    const messageDiv = document.getElementById("message");
+
+    // Populate candidates in the select dropdown
+    const candidates = ["Candidate A", "Candidate B", "Candidate C"];
+    candidates.forEach(candidate => {
+        const option = document.createElement("option");
+        option.value = candidate;
+        option.text = candidate;
+        candidatesSelect.appendChild(option);
+    });
+
+    // Handle form submission
+    voteForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        const selectedCandidate = candidatesSelect.value;
+
+        // Here, you would make an AJAX request to submit the vote
+        // Replace the following lines with your actual AJAX logic
+
+        // Simulate a successful vote submission for demonstration
+        setTimeout(() => {
+            messageDiv.textContent = `Your vote for ${selectedCandidate} has been Submmited successfully!`;
+            messageDiv.style.color = "green";
+        }, 1000);
+    });
+});
+
+</script>
+
+</body>
+</html>

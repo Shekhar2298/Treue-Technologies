@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>User Profile</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+   
+    </head>
+    <body>
+        <h1>User Profile</h1>
+        <h2 th:text="${user.username}"></h2>
+        <h3>Genre Preferences:</h3>
+        <ul>
+            <li th:each="genre : ${user.genrePreferences}" th:text="${genre.name}"></li>
+        </ul>
+    </body>
+    </html>
+    
+    

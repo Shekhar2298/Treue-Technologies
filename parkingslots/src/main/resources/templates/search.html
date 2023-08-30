@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8">
+    <title>Parking Availability</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous">
+
+    <style>
+    body {
+  font-family: Arial;
+  background-color: bisque;
+  display: flex;
+}
+
+input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=submit] {
+  width: 100%;
+  background-color: #04AA6D;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+div.container {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+  width: 35%;
+margin-right: 15%;  margin-left: 32%;
+text-align: center;
+
+}
+#availabilityMessage{
+    background-color: aquamarine;
+}
+#checkAvailability{
+    align-items: center;
+    align-self: center;
+}
+#bookingMessage{
+    color: #45a049;
+}
+</style>
+
+  </head>
+  <body>
+    <div class="container">
+      <h1>Parking Availability Checker</h1>
+      <!-- <form action="#" method="post" th:action="@{/parkSpot}"> -->
+        <label for="location">Location:</label>
+        <select id="location" name="location">
+          <option value="A">Location A</option>
+          <option value="B">Location B</option>
+          <option value="C">Location C</option>
+          <option value="D">Location D</option>
+          <option value="E">Location E</option>
+          <option value="F">Location F</option>
+        </select>
+
+        <br>
+        <label for="date">Date:</label>
+        <input type="date" id="date" name="date">
+        <br><br>
+        <label for="time">Time:</label>
+        <input type="time" id="time" name="time">
+        <br><br>
+        <button onclick="checkAvailability()" class="btn btn-primary">Check
+          Availability</button><br><br>
+        <div id="availabilityMessage"></div>
+        <br><br> 
+        <button onclick="bookSlot()" class="btn btn-success">Book Slot</button><br><br>
+        <div id="bookingMessage"></div>
+
+     
+    </div>
+    <script>
+    
+const parkingSpots = {
+    "A": {
+        "2023-08-25": ["09:00", "10:00", "11:00"],
+        "2023-08-26": ["13:00", "14:00"]
+    },
+    "B": {
+        "2023-08-25": ["09:00", "10:00"],
+        "2023-08-26": ["11:00"]
+    }
+};
+
+function checkAvailability() {
+    const location = document.getElementById("location").value;
+    const date = document.getElementById("date").value;
+    const time = document.getElementById("time").value;
+
+    if (parkingSpots[location] && parkingSpots[location][date] && parkingSpots[location][date].includes(time)) {
+        document.getElementById("availabilityMessage").innerText = "Parking spot available!";
+    } else {
+        document.getElementById("availabilityMessage").innerText = "Parking spot not available.";
+    }
+}
+
+function bookSlot() {
+    const location = document.getElementById("location").value;
+    const date = document.getElementById("date").value;
+    const time = document.getElementById("time").value;
+
+    if (parkingSpots[location] && parkingSpots[location][date] && parkingSpots[location][date].includes(time)) {
+        parkingSpots[location][date] = parkingSpots[location][date].filter(t => t !== time);
+        document.getElementById("bookingMessage").innerText = "Slot booked successfully!";
+    } else {
+        document.getElementById("bookingMessage").innerText = "Slot not available for booking.";
+    }
+}
+
+</script>
+  </body>
+</html>

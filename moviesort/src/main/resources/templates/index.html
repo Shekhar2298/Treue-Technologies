@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Search</title>
+</head>
+<body>
+    <h1>Movie Search</h1>
+    <form th:action="@{/api/movies/search}" method="get">
+        <input type="text" name="keyword" placeholder="Search by title or actor">
+        <button type="submit">Search</button>
+    </form>
+    
+    <div th:if="${movies}">
+        <ul>
+            <li th:each="movie : ${movies}">
+                <span th:text="${movie.title}"></span>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>

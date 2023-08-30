@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${movie.title}"></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Details</title>
+</head>
+<body>
+   
+
+    <h1 th:text="${movie.title}"></h1>
+    <p>Director: <span th:text="${movie.director}"></span></p>
+    <p>Genres: <span th:each="genre : ${movie.genres}" th:text="${genre.name} + ', '"></span></p>
+    
+</body>
+</html>

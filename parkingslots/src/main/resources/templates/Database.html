@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Database of Vaccine</title>
+        <link rel="stylesheet" th:href="@{css/style.css}"
+            href="../static/css/style.css">
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet"
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+            crossorigin="anonymous">
+            <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+            rel="stylesheet">
+          <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+          
+    </head>
+    <body>
+
+      
+        <div class="container ">
+
+            <table class="table">
+              <thead>
+                <tr class="table-dark">
+                  <th scope="col">Id</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Contact Number</th>
+                  <th scope="col">Password</th>
+                  <th scope="col">Activity</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="secondary" th:each="d: ${data}">
+                  <td th:text="${d.id}" class="table-primary"></td>
+                  <td th:text="${d.name}" class="table-danger"></td>
+                  <td th:text="${d.email}" class="table-secondary"></td>
+                  <td th:text="${d.contact}" class="table-warning"></td>
+      
+                  <td th:text="${d.password}" class="table-secondary"></td>
+      
+                  <td class=" table-info">
+                    <a name id role="button"
+                      class="btn btn-outline-success btn-lg" href="#"
+                      th:href="@{/update/{id}(id=${d.id})}">Edit</a>
+      
+                    <a name id class="btn  btn-outline-danger btn-lg"
+                      th:href="@{/deletedata/{id}(id=${d.id})}" role="button" href="#">Delete</a>
+                  </td>
+                </tr>
+      
+              </tbody>
+            </table>
+          </div>
+
+
+        
+       
+    </body>
+</html>
